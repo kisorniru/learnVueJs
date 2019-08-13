@@ -12,19 +12,26 @@
     <body>
 
         <div id="root">
-            <h1>Skills</h1>
+            <h1>All payments</h1>
             <hr>
             <ul>
-                <li v-for='(skill, i) in skills'>
+                <li v-for='(payment, i) in payments'>
                     <p>
-                        {{ i + 1}}. {{ skill.name }} ({{ skill.experience }}) <button style="background-color: red;" v-on:click="removeSkill(i)">X</button>
+                        {{ payment.name }} ({{ payment.amount }})
                     </p>
                 </li>
             </ul>
-            <input type="text" v-model="newSkill" placeholder="New Skill Name">
-            <input type="text" v-model="newExperience" placeholder="New Skill Experience">
-            <!-- v-on: er shortform @ -->
-            <button @click="addNewSkill()">Add</button>
+            <h3>Total payments : {{ totalPayments }}</h3>
+            <h1>Unpaid payments</h1>
+            <hr>
+            <ul>
+                <li v-for='(payment, i) in unpaidPayments'>
+                    <p>
+                        {{ payment.name }} ({{ payment.amount }})
+                    </p>
+                </li>
+            </ul>
+            <h3>Total unpaid payments : {{ totalUnpaidPayments }}</h3>
 
         </div>
 
@@ -35,25 +42,35 @@
                 data: {
                     newSkill: "",
                     newExperience: "",
-                    skills: [
-                        { name: "HTML",     experience: 5 },
-                        { name: "CSS",      experience: 5 },
-                        { name: "JS",       experience: 3 },
-                        { name: "nodeJs",   experience: 2 },
-                        { name: "jQuery",   experience: 4 },
-                        { name: "PHP",      experience: 3 }
+                    payments: [
+                        { name: "House Rent", amount: 15000, paid: true },
+                        { name: "Electricity Bill", amount: 1000, paid: false },
+                        { name: "Gas Bill", amount: 800, paid: true },
+                        { name: "Water Bill", amount: 700, paid: false },
+                        { name: "Internet Bill", amount: 600, paid: false },
                     ]
                 },
-                methods: {
-                    addNewSkill: function(){
-                        // alert("Adding...");
-                        this.skills.push({name: this.newSkill, experience: this.newExperience});
-                        this.newSkill = '';
-                        this.newExperience = '';
+                computed: {
+                    unpaidPayments: function(){
+                        return this.payments.filter(function(p){
+                            return !p.paid;
+                        });
                     },
-                    removeSkill(i) {
-                        // this.skills.pop(i);
-                        this.skills.splice(i, 1);
+                    totalPayments: function(){
+                        var totalAmount = 0;
+                        for(i = 0; i < this.payments.length; i++){
+                            totalAmount += this.payments[i].amount;
+                        }
+                        return totalAmount;
+                    },
+                    totalUnpaidPayments: function(){
+                        var totalUnpaidAmount = 0;
+                        for(i = 0; i < this.payments.length; i++){
+                            if(!this.payments[i].paid){
+                                totalUnpaidAmount += this.payments[i].amount;
+                            }
+                        }
+                        return totalUnpaidAmount;
                     }
                 }
             });
