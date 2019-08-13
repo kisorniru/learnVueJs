@@ -1,0 +1,84 @@
+<html>
+    
+    <head>
+        
+        <title>L-7:: conditional rendering</title>
+        <style type="text/css">
+            
+        </style>
+
+    </head>
+
+    <body>
+
+        <div id="root">
+            <h1>Skills</h1>
+            <hr>
+            <ul>
+                <li v-for='(skill, i) in skills'>
+                    <p>
+                        {{ i + 1}}. {{ skill.name }} ({{ skill.experience }})
+                    </p>
+                </li>
+            </ul>
+            <hr>
+            <h1>Skills with condition ( experience more than 3 years )</h1>
+            <hr>
+            <ul>
+                <li v-for='(skill, i) in skills'>
+                    <p v-if="skill.experience > 3">
+                        {{ i + 1}}. {{ skill.name }} ({{ skill.experience }})
+                    </p>
+                </li>
+            </ul>
+            <hr>
+            <ul>
+                <li v-for='(skill, i) in skills' v-if='skill.experience > 3'>
+                    <p>
+                        {{ i + 1}}. {{ skill.name }} ({{ skill.experience }})
+                    </p>
+                </li>
+            </ul>
+            <p>v-show and v-if are almost same; here v-show load data in DOM but not display "display:none;" & v-if not load data in DOM</p>
+            <hr>
+            <ul>
+                <!-- v-show and v-if are almost same; here v-show load data in DOM but not display "display:none;" & v-if not load data in DOM -->
+                <li v-for='(skill, i) in skills' v-show='skill.experience > 3'>
+                    <p>
+                        {{ i + 1}}. {{ skill.name }} ({{ skill.experience }})
+                    </p>
+                </li>
+            </ul>
+            <p>v-if and v-else</p>
+            <hr>
+            <ul>
+                <li v-for='(skill, i) in skills'>
+                    <p v-if='skill.experience > 3' style="color: brown;">
+                        {{ i + 1}}. {{ skill.name }} ({{ skill.experience }})
+                    </p>
+                    <p v-else style="color: blueviolet;">
+                        {{ i + 1}}. {{ skill.name }} ({{ skill.experience }})
+                    </p>
+                </li>
+            </ul>
+
+        </div>
+
+        <script type="text/javascript" src="/var/www/vuejs/vuejs/vue.js"></script>
+        <script type="text/javascript">
+            var app = new Vue({
+                el: "#root",
+                data: {
+                    skills: [
+                        { name: "HTML",     experience: 5 },
+                        { name: "CSS",      experience: 5 },
+                        { name: "JS",       experience: 3 },
+                        { name: "nodeJs",   experience: 2 },
+                        { name: "jQuery",   experience: 4 },
+                        { name: "PHP",      experience: 3 }
+                    ]
+                }
+            });
+        </script>
+    </body>
+</html>

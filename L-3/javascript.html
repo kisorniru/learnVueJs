@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <title>L-3</title>
+    </head>
+    <body>
+
+        <div id="root">
+            {{ message }}
+        </div>
+
+        <script type="text/javascript" src="/var/www/vuejs/vuejs/vue.js"></script>
+        <script type="text/javascript">
+            var app = new Vue({
+                el: "#root",
+                data: {
+                    message: "Hello Vue.js!"
+                }
+            });
+        </script>
+    </body>
+</html>

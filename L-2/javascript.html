@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>L-2</title>
+    </head>
+    <body>
+        <script type="text/javascript">
+            console.log('start');
+            // console.log('middle');
+            print('middle', function(){
+                console.log('callback end');
+            });
+            console.log('end');
+
+            function print(s, callback){
+                setTimeout(function(){
+                    console.log(s);
+                    callback();
+                }, 1000);
+            };
+
+
+
+
+        </script>
+    </body>
+</html>

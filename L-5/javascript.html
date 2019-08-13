@@ -1,0 +1,93 @@
+<html>
+    
+    <head>
+        
+        <title>L-5:: attribute & class binding</title>
+        <style type="text/css">
+            ul {
+                list-style: none;
+            }
+            li {
+                display: inline;
+            }
+            .active{
+                background: #0b78a0;
+                color: #ffffff;
+                padding: 5px;
+            }
+            a {
+                text-decoration: none;
+            }
+        </style>
+
+    </head>
+
+    <body>
+
+        <div id="root">
+            <ul>
+                <li>
+                    <!-- v-bind OR ":" for attribute -->
+                    <a v-bind:href="link1.url" target="_blank" v-bind:title="link1.title">{{ link1.text }}</a>
+                </li>
+                <li>
+                    <!-- v-bind OR ":" for attribute -->
+                    <a :href="link2.url" target="_blank" :title="link2.title">{{ link2.text }}</a>
+                </li>
+            </ul>
+            
+            <br>
+
+            <ul>
+                <li>
+                    <!-- v-bind OR ":" for class bind -->
+                    <a :class="className" v-bind:href="link1.url" target="_blank" v-bind:title="link1.title">{{ link1.text }}</a>
+                </li>
+                <li>
+                    <!-- v-bind OR ":" for attribute -->
+                    <a :href="link2.url" target="_blank" :title="link2.title">{{ link2.text }}</a>
+                </li>
+            </ul>
+            
+            <ul>
+                <li>
+                    <!-- conditional bind <-> v-bind OR ":" for class bind -->
+                    <a :class="{'active': activeLink == 'link1'}" v-bind:href="link1.url" target="_blank" v-bind:title="link1.title">{{ link1.text }}</a>
+                </li>
+                <li>
+                    <!-- conditional bind <-> v-bind OR ":" for attribute -->
+                    <a :class="{'active': activeLink == 'link2'}" :href="link2.url" target="_blank" :title="link2.title">{{ link2.text }}</a>
+                </li>
+            </ul>
+
+            <ul>
+                <li v-html="htmlCode">
+                    {{ htmlCode }}
+                </li>
+            </ul>
+
+        </div>
+
+        <script type="text/javascript" src="/var/www/vuejs/vuejs/vue.js"></script>
+        <script type="text/javascript">
+            var app = new Vue({
+                el: "#root",
+                data: {
+                    link1: {
+                        text: "facebook",
+                        title: "Go to Facebook",
+                        url: "https://www.facebook.com"
+                    },
+                    link2: {
+                        text: "youtube",
+                        title: "Go to youtube",
+                        url: "https://www.youtube.com"
+                    },
+                    className: "active",
+                    activeLink: "link1",
+                    htmlCode: '<a href="https://kisorniru.github.io/" title="About Me"> About Me </a>'
+                }
+            });
+        </script>
+    </body>
+</html>

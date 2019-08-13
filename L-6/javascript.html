@@ -1,0 +1,44 @@
+<html>
+    
+    <head>
+        
+        <title>L-6:: list rendering</title>
+        <style type="text/css">
+            ul {
+                list-style: none;
+            }
+        </style>
+
+    </head>
+
+    <body>
+
+        <div id="root">
+            <h1>Skills</h1>
+            <hr>
+            <ul>
+                <li v-for='(skill, i) in skills'>
+                    {{ i + 1}}. {{ skill.name }} ({{ skill.experience }})
+                </li>
+            </ul>
+
+        </div>
+
+        <script type="text/javascript" src="/var/www/vuejs/vuejs/vue.js"></script>
+        <script type="text/javascript">
+            var app = new Vue({
+                el: "#root",
+                data: {
+                    skills: [
+                        { name: "HTML",     experience: 5 },
+                        { name: "CSS",      experience: 5 },
+                        { name: "JS",       experience: 3 },
+                        { name: "nodeJs",   experience: 2 },
+                        { name: "jQuery",   experience: 4 },
+                        { name: "PHP",      experience: 3 }
+                    ]
+                }
+            });
+        </script>
+    </body>
+</html>
