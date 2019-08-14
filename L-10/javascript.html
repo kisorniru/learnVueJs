@@ -9,65 +9,43 @@
     <body>
 
         <div id="root">
-            <h1>All payments</h1>
+            <h1>Filter</h1>
             <hr>
-            <ul>
-                <li v-for='(payment, i) in payments'>
-                    <p>
-                        {{ payment.name }} ({{ payment.amount }})
-                    </p>
-                </li>
-            </ul>
-            <h3>Total payments : {{ totalPayments }}</h3>
-            <h1>Unpaid payments</h1>
-            <hr>
-            <ul>
-                <li v-for='(payment, i) in unpaidPayments'>
-                    <p>
-                        {{ payment.name }} ({{ payment.amount }})
-                    </p>
-                </li>
-            </ul>
-            <h3>Total unpaid payments : {{ totalUnpaidPayments }}</h3>
-
+            <!-- <h3>{{ upperCaseName }}</h3> -->
+            <h3>{{ name | upper }}</h3>
+            <h3>{{ profession | lower }}</h3>
+            <h3>{{ profession | lower | upper }}</h3>
+            <h3>{{ today | bdDateFormat }}</h3>
         </div>
 
         <script type="text/javascript" src="/var/www/vuejs/vuejs/vue.js"></script>
         <script type="text/javascript">
+
+            // This is accessable from global
+            Vue.filter("lower", function(s){
+                return s.toLowerCase();
+            });
+
+            Vue.filter("bdDateFormat", function(d){
+                return d.getUTCDate() + "-" + (d.getUTCMonth() + 1) + "-" + d.getUTCFullYear();
+            });
+
+            // This is accessable from local 
             var app = new Vue({
                 el: "#root",
                 data: {
-                    newSkill: "",
-                    newExperience: "",
-                    payments: [
-                        { name: "House Rent", amount: 15000, paid: true },
-                        { name: "Electricity Bill", amount: 1000, paid: false },
-                        { name: "Gas Bill", amount: 800, paid: true },
-                        { name: "Water Bill", amount: 700, paid: false },
-                        { name: "Internet Bill", amount: 600, paid: false },
-                    ]
+                    name: "Noor-A-Alam Siddique",
+                    profession: "Software Engineer",
+                    today: new Date(),
                 },
-                computed: {
-                    unpaidPayments: function(){
-                        return this.payments.filter(function(p){
-                            return !p.paid;
-                        });
-                    },
-                    totalPayments: function(){
-                        var totalAmount = 0;
-                        for(i = 0; i < this.payments.length; i++){
-                            totalAmount += this.payments[i].amount;
-                        }
-                        return totalAmount;
-                    },
-                    totalUnpaidPayments: function(){
-                        var totalUnpaidAmount = 0;
-                        for(i = 0; i < this.payments.length; i++){
-                            if(!this.payments[i].paid){
-                                totalUnpaidAmount += this.payments[i].amount;
-                            }
-                        }
-                        return totalUnpaidAmount;
+                // computed: {
+                //     upperCaseName: function(){
+                //         return this.name.toUpperCase();
+                //     }
+                // },
+                filters: {
+                    upper: function(s){
+                        return s.toUpperCase();
                     }
                 }
             });
