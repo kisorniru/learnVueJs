@@ -1,0 +1,51 @@
+<html>
+    
+    <head>
+        
+        <title>L-14:: Transition animation</title>
+        <link rel="stylesheet" type="text/css" href="../css/styles.css">
+        <style>
+            .foo{
+                background: #ace371;
+                text-align: center;
+                width: 960px;
+                margin: 44px auto;
+                min-height: 222px;
+            }
+            .fade-enter-active, .fade-leave-active{
+                transition: transform .5s;
+            }
+            .fade-enter, .fade-leave-to{
+                transform: rotate(-180deg);
+            }
+            .
+        </style>
+    </head>
+
+    <body>
+
+        <div id="root">
+            
+            <button @click="show = !show">Toggle</button>
+            <transition name="fade">
+                <div class="foo" v-if="show">
+                    <p>Hello world!</p>
+                </div>
+            </transition>
+
+        </div>
+
+        <script type="text/javascript" src="../vuejs/vue.js"></script>
+        <script type="text/javascript" src="../vuejs/components.js"></script>
+        <script type="text/javascript">
+
+            // This is accessable from local 
+            var app = new Vue({
+                el: "#root",
+                data: {
+                    show: false,
+                }
+            });
+        </script>
+    </body>
+</html>

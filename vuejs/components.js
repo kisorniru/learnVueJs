@@ -1,3 +1,4 @@
+// This is accessable from global
 var Event = new Vue();
 
 Vue.component('tabs', {

@@ -1,0 +1,85 @@
+<html>
+    
+    <head>
+        
+        <title>L-14:: Transition animation</title>
+        <link rel="stylesheet" type="text/css" href="../css/styles.css">
+        <style>
+            .foo{
+                background: #ace371;
+                text-align: center;
+                width: 960px;
+                margin: 44px auto;
+                min-height: 222px;
+            }
+            .fade-enter-active, .fade-leave-active{
+                /* transition: transform .5s; */
+                transition: margin-left .5s;
+            }
+            .fade-enter, .fade-leave-to{
+                /* transform: rotate(-310deg); */
+                margin-left: -222px;
+            }
+            .
+        </style>
+    </head>
+
+    <body>
+
+        <div id="root">
+            
+            <h1>Skills</h1>
+            <hr>
+            
+            <input type="text" v-model="newSkill" placeholder="New Skill Name">
+            <input type="text" v-model="newExperience" placeholder="New Skill Experience">
+            <!-- v-on: er shortform @ -->
+            <button @click="addNewSkill()">Add</button>
+
+            <ul>
+                <transition-group name="fade">
+                    <li v-for='(skill, i) in skills' :key="i">
+                        <p>
+                            {{ i + 1}}. {{ skill.name }} ({{ skill.experience }}) <button style="background-color: red;" v-on:click="removeSkill(i)">X</button>
+                        </p>
+                    </li>
+                </transition-group>
+            </ul>
+            
+        </div>
+
+        <script type="text/javascript" src="../vuejs/vue.js"></script>
+        <script type="text/javascript">
+
+            // This is accessable from local 
+            var app = new Vue({
+                el: "#root",
+                data: {
+                    newSkill: "",
+                    newExperience: "",
+                    skills: [
+                        { name: "HTML",     experience: 5 },
+                        { name: "CSS",      experience: 5 },
+                        { name: "JS",       experience: 3 },
+                        { name: "nodeJs",   experience: 2 },
+                        { name: "jQuery",   experience: 4 },
+                        { name: "PHP",      experience: 3 }
+                    ]
+                },
+                methods: {
+                    addNewSkill: function(){
+                        // alert("Adding...");
+                        this.skills.push({name: this.newSkill, experience: this.newExperience});
+                        this.newSkill = '';
+                        this.newExperience = '';
+                    },
+                    removeSkill(i) {
+                        // this.skills.pop(i);
+                        this.skills.splice(i, 1);
+                    }
+                }
+            });
+            
+        </script>
+    </body>
+</html>
