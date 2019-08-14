@@ -1,0 +1,95 @@
+<html>
+    
+    <head>
+        
+        <title>L-11:: Components</title>
+
+    </head>
+
+    <body>
+
+        <div id="root">
+            
+            <h1>Components</h1>
+            <hr>
+            <div class="panel">
+                <div class="panelTitle">
+                    This is panel title.
+                </div>
+                <div class="panelContent">
+                    This is panel content This is panel content This is panel content This is panel content This is panel content This is panel content blah blah blah ....
+                </div>
+            </div>
+            
+            
+            <!-- Custom Components -->
+            <h1>Custom Components exm-1</h1>
+            <hr>
+            <sid-panel title="custom panel title - 1." content="This is panel content This is panel content This is panel content This is panel content This is panel content This is panel content blah blah blah ....">
+            </sid-panel>
+
+            <h1>Custom Components exm-2</h1>
+            <hr>
+            <sid-panel title="custom panel title - 2." content="This is panel content This is panel content This is panel content This is panel content This is panel content This is panel content blah blah blah ....">
+            </sid-panel>
+
+            <h1>Custom Components exm-3</h1>
+            <hr>
+            <sid-panel-html title="custom panel title - 3.">
+                <h1>Hello custom panel html</h1>
+                <input type="text" name="">
+                <button>Submit</button>
+            </sid-panel>
+
+        </div>
+
+        <script type="text/javascript" src="/var/www/vuejs/vuejs/vue.js"></script>
+        <script type="text/javascript">
+
+            // This is accessable from global
+            Vue.component("sid-panel", {
+                template: `
+                    <div class="panel">
+                        <div class="panelTitle">
+                            {{ title }}
+                        </div>
+                        <div class="panelContent">
+                            {{ content }}
+                        </div>
+                    </div>
+                `,
+                props: ['title', 'content']
+            });
+
+            Vue.component("sid-panel-html", {
+                template: `
+                    <div class="panel" v-if="show>
+                        <div class="panelTitle">
+                            <div class="close" @click="show = false"> X </div>
+                            {{ title }}
+                        </div>
+                        <div class="panelContent">
+                            <slot></slot>
+                        </div>
+                    </div>
+                `,
+                props: ['title', 'content'],
+                data: function(){
+                    return {
+                        show: true
+                    }
+                }
+            });
+
+            // This is accessable from local 
+            var app = new Vue({
+                el: "#root",
+                data: {
+                    name: "Noor-A-Alam Siddique",
+                    profession: "Software Engineer",
+                    today: new Date(),
+                }
+            });
+        </script>
+    </body>
+</html>
