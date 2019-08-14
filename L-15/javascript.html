@@ -1,0 +1,43 @@
+<html>
+    
+    <head>
+        
+        <title>L-15:: Routing with vue-router</title>
+        <link rel="stylesheet" type="text/css" href="../css/styles.css">
+
+    </head>
+
+    <body>
+
+        <div id="root">
+            
+            <tabs>
+                <tab name="Tab1" selected="true">
+                    Tab1 content... <button>btn1</button>
+                </tab>
+
+                <tab name="Tab2">
+                    Tab2 content... 
+                </tab>
+
+                <tab name="Tab3">
+                    Tab3 content... 
+                </tab>
+            </tabs>
+
+        </div>
+
+        <script type="text/javascript" src="../vuejs/vue.js"></script>
+        <script type="text/javascript" src="../vuejs/components.js"></script>
+        <script type="text/javascript">
+
+            // This is accessable from local 
+            var app = new Vue({
+                el: "#root",
+                data: {
+                    showLogin: false,
+                }
+            });
+        </script>
+    </body>
+</html>
