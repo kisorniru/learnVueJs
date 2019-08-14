@@ -88,3 +88,51 @@ body{
 .details{
     padding: 44px;
 }
+
+.foo{
+    background: #ace371;
+    text-align: center;
+    width: 960px;
+    margin: 44px auto;
+    min-height: 222px;
+}
+.fade-enter-active, .fade-leave-active{
+    /* transition: transform .5s; */
+    transition: margin-left 5s;
+}
+
+.fade-enter{
+    margin-left: -1111px;
+}
+
+.fade-leave-to{
+    margin-left: 1111px;
+}
+
+.main {
+    position: absolute;
+    width: 100%;
+}
+
+ul.menu{
+    list-style: none;
+    width: 960px;
+    margin: auto;
+    background: #1a6aa1;
+    color: #ffffff;
+}
+
+ul.menu li{
+    display: inline;
+}
+
+ul.menu li a{
+    color: #fff;
+    display: inline-block;
+    padding: 5px;
+    text-decoration: none;
+}
+
+ul.menu li a.router-link-active{
+    background: #BE40001;
+}
